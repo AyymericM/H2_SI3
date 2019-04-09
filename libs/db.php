@@ -24,9 +24,22 @@
             }
         }
 
+        public function createUser(String $name, Int $score)
+        {
+            if ($name && $score) {
+                $query = $this->db()->prepare('INSERT INTO users(username, best_score) VALUES (:name, :score)');
+                $query->bindValue('name', $name);
+                $query->bindValue('score', $score);
+                $query->execute();
+                return true;
+            } else {
+                return false;
+            }
+        }
+
         public function getUsers()
         {
-            $query = $this->db()->query("SELECT * FROM");
+            $query = $this->db()->query("SELECT * FROM users");
             return $query->fetchAll();
         }
 
@@ -44,9 +57,12 @@
 
         public function editUserScore(Int $uid, Int $score)
         {
-            if ($score) {                
+            if ($uid && $score) {                
                 $query = $this->db()->prepare("UPDATE users SET best_score=? WHERE id=? ");
                 $query->execute([$score, $uid]);
+                return true;
+            } else {
+                return false;
             }
         }
     }
