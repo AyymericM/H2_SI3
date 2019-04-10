@@ -1,4 +1,4 @@
 <?php 
-include 'libs/gotRequest.php';
+include 'libs/lordQuestion.php';
 
 ?>
