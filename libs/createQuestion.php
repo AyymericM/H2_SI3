@@ -1,8 +1,8 @@
 <?php
 
-function createQuestion( $id = null, String $question = null, Array $choices = null)
+function createQuestion( String $question = null, Array $choices = null)
 {
-    if ($id === null || $question === null || $choices === null)
+    if ($question === null || $choices === null)
     {
         return false;
     }

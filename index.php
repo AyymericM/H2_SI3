@@ -1,4 +1,4 @@
 <?php 
-include 'libs/lordQuestion.php';
+include 'libs/tvQuestion.php';
 
 ?>

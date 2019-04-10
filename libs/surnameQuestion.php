@@ -28,7 +28,7 @@ function createSurnameQuestion($answersAmount, $answerId)
         }
 
         shuffle($choices);
-        $result = createQuestion(1, 'Quel est le surnom de '.$answerName.' ?', $choices);
+        $result = createQuestion('What is the nickname of '.$answerName.'?', $choices);
 
         echo '<pre>';
         print_r($result);
