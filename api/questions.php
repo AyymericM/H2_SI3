@@ -1,5 +1,5 @@
 <?php
-
+    header("Access-Control-Allow-Origin: *");
     include_once '../libs/db/questions.php';
 
     $quest = new Questions();

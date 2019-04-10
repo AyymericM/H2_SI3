@@ -3,7 +3,7 @@
 include 'gotRequest.php';
 include 'createQuestion.php';
 
-function createLordQuestion($answersAmount, $answerId)
+function createLordQuestion($answersAmount)
 {
     $answerId = strval(floor(mt_rand(1, 444)));
     $answerHouse = returnGotData('https://anapioficeandfire.com/api/houses/', $answerId , 'name');
