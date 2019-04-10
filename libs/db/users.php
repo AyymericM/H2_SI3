@@ -40,16 +40,20 @@
         public function loginUser(String $username, String $password)
         {
             $hashedpass = md5($password);
-            $query = $this->db()->query("SELECT * FROM users WHERE username='$username' AND password='$hashedpass'");
-            $res = $query->fetch();
-            if (!empty($res->id)) {
-                return [
-                    "id" => $res->id,
-                    "username" => $res->username,
-                    "best_score" => $res->best_score
-                ];
+            $query = $this->db()->query("SELECT * FROM users WHERE username='$username'");
+            $user = $query->fetch();
+            if (!empty($user->id)) {
+                if ($user->password == $hashedpass) {
+                    return [
+                        "id" => $user->id,
+                        "username" => $user->username,
+                        "best_score" => $user->best_score
+                    ];
+                } else {
+                    return 'WRONG_PASS';
+                }
             } else {
-                return false;
+                return 'USER_NOT_FOUND';
             }
         }
 
