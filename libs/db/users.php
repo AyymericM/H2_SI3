@@ -55,30 +55,20 @@
 
         public function getAll()
         {
-            $query = $this->db()->query("SELECT * FROM users");
+            $query = $this->db()->query("SELECT id, username, best_score FROM users");
             return $query->fetchAll();
         }
 
         public function getUserByID(Int $uid)
         {
-            $query = $this->db()->query("SELECT * FROM users WHERE id=$uid");
-            $res = $query->fetch();
-            return [
-                "id" => $res->id,
-                "username" => $res->username,
-                "best_score" => $res->best_score
-            ];
+            $query = $this->db()->query("SELECT id, username, best_score FROM users WHERE id=$uid");
+            return $query->fetch();
         }
 
         public function getUserByName(String $uname)
         {
-            $query = $this->db()->query("SELECT * FROM users WHERE username='$uname'");
-            $res = $query->fetch();
-            return [
-                "id" => $res->id,
-                "username" => $res->username,
-                "best_score" => $res->best_score
-            ];
+            $query = $this->db()->query("SELECT id, username, best_score FROM users WHERE username='$uname'");
+            return $query->fetch();
         }
 
         public function editUserScore(Int $uid, Int $score)
