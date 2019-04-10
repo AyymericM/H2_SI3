@@ -6,7 +6,7 @@
     define('DB_USER', 'root');
     define('DB_PASS', '');
 
-    class DB
+    class Users
     {   
         public function db()
         {
@@ -24,12 +24,12 @@
             }
         }
 
-        public function createUser(String $name, Int $score)
+        public function createUser(String $username, String $password)
         {
-            if ($name && $score) {
-                $query = $this->db()->prepare('INSERT INTO users(username, best_score) VALUES (:name, :score)');
-                $query->bindValue('name', $name);
-                $query->bindValue('score', $score);
+            if ($username && $password) {
+                $query = $this->db()->prepare('INSERT INTO users(username, password) VALUES (:username, :password)');
+                $query->bindValue('username', $username);
+                $query->bindValue('password', md5($password));
                 $query->execute();
                 return true;
             } else {
@@ -37,7 +37,23 @@
             }
         }
 
-        public function getUsers()
+        public function loginUser(String $username, String $password)
+        {
+            $hashedpass = md5($password);
+            $query = $this->db()->query("SELECT * FROM users WHERE username='$username' AND password='$hashedpass'");
+            $res = $query->fetch();
+            if (!empty($res->id)) {
+                return [
+                    "id" => $res->id,
+                    "username" => $res->username,
+                    "best_score" => $res->best_score
+                ];
+            } else {
+                return false;
+            }
+        }
+
+        public function getAll()
         {
             $query = $this->db()->query("SELECT * FROM users");
             return $query->fetchAll();
@@ -46,7 +62,12 @@
         public function getUserByID(Int $uid)
         {
             $query = $this->db()->query("SELECT * FROM users WHERE id=$uid");
-            return $query->fetch();
+            $res = $query->fetch();
+            return [
+                "id" => $res->id,
+                "username" => $res->username,
+                "best_score" => $res->best_score
+            ];
         }
 
         public function getUserByName(String $uname)
