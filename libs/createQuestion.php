@@ -1,6 +1,6 @@
 <?php
 
-function createQuestion( Number $id = null, String $question = null, Array $choices = null)
+function createQuestion( $id = null, String $question = null, Array $choices = null)
 {
     if ($id === null || $question === null || $choices === null)
     {
@@ -10,7 +10,6 @@ function createQuestion( Number $id = null, String $question = null, Array $choi
     {
         $result = 
         [
-            'id' => $id,
             'question' => $question,
             'choices' => $choices,
         ];
