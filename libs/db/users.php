@@ -31,7 +31,7 @@
                 $query->bindValue('username', $username);
                 $query->bindValue('password', md5($password));
                 $query->execute();
-                return true;
+                return $this->getUserByName($username);
             } else {
                 return false;
             }
@@ -73,7 +73,12 @@
         public function getUserByName(String $uname)
         {
             $query = $this->db()->query("SELECT * FROM users WHERE username='$uname'");
-            return $query->fetch();
+            $res = $query->fetch();
+            return [
+                "id" => $res->id,
+                "username" => $res->username,
+                "best_score" => $res->best_score
+            ];
         }
 
         public function editUserScore(Int $uid, Int $score)
