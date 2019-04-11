@@ -8,9 +8,9 @@
         echo json_encode($quest->getQuestionByID($_GET['id']));
     } elseif ($_GET['type']) {
         if ($_GET['type'] == 0) {
-            echo json_encode($quest->getQuestionByType($_GET['type']));
-        } else {
             echo json_encode($quest->getAll());
+        } else {
+            echo json_encode($quest->getQuestionByType($_GET['type']));
         }
     } else {
         echo json_encode($quest->getAll());

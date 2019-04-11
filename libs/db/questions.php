@@ -39,6 +39,6 @@
         public function getQuestionByType(Int $type)
         {
             $query = $this->db()->query("SELECT * FROM questions WHERE type=$type");
-            return $query->fetch();
+            return $query->fetchAll();
         }
     }
