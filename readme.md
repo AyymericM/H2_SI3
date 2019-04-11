@@ -1,51 +1,71 @@
 # H2 SI3
 
-
 ![Picture](https://via.placeholder.com/782x90?text=POP+QUIZ)
 
-> On fait que du back.
+> This project is a quiz based on multiple APIs.
 <hr>
 
-# Table des Matières
+# Table of contents
 
-* [Membres de l'équipe](#membres-de-l'équipe)
+* [Team members](#team-members)
 * [Description](#description)
-* [Démo du projet](#démo-du-projet)
 * [Features](#features) 
-* [Spécifications](#specifications)
-* [Comment ça marche ?](#comment-ça-marche-?)
-* [Difficultés](#difficultés)
-* [Credits / Contributeurs](#credits-/-contributeurs)
+* [Specifications](#specifications)
+* [Project Demo](#project-demo)
+* [Install instructions](#install-instructions)
+* [Issues](#issues)
+* [Credits / Contributors](#credits-/-contributors)
 * [License](#license)
 * [NOTE](#note)
 
-# Membres de l'équipe
+# Team members
 
 ## Lead developer
 * Aymeric Moehn
+
+## Back-end developers
+* Damien Smagghe
+* Corentin Boulanouar
+
+## front-end developer
+* Romain Maillot
 
 # Description
 
 On fait que du back.
 
 # Features
+## Languages used
+* PHP
+* React
+## APIs used
+* The Game of Thrones API <a href='https://anapioficeandfire.com/'>An API of Ice and Fire</a>
+* The Star Wars API <a href='https://swapi.co/'>SWAPI</a>
 
-# Spécifications
+# Specifications
+Minimum requirements: 
+* a computer or a mobile device 
+* an Internet connection
 
-# Démo du projet
+# Project demo
 
-# Comment ca marche ?
+Production host: <a href=''>link</a>
+
+# Install instructions
 
 * Faire tourner le PHP dans le dossier `API` avec apache ou autre chose
 * Installer les dépendances du dossier `CLIENT` et `CLIENT/server`
 * Build le client en faisant `cd CLIENT && npm run build`
 * Démarrer le serveur node en faisant `cd CLIENT/server && npm start`
 
-# Difficultés
+# Issues
 
-# Credits / Contributeurs
+# Credits / Contributors
 
-# Licence
+# License
+
+This project is licensed under the terms of the [MIT](LICENSE) license. <br>
+See the <a href=''>license.md</a> file for more information.
 
 ## NOTE
 
