@@ -3,8 +3,9 @@
 include 'gotRequest.php';
 include 'createQuestion.php';
 
-function createSurnameQuestion($answersAmount, $answerId)
-{
+function createSurnameQuestion(Int $answersAmount = null, Int $answerId = null, Int $id = null)
+{   
+    // $answerId = strval(floor(mt_rand(1, 444)));//development
     $answerName = returnGotData('https://anapioficeandfire.com/api/characters/', $answerId , 'name');
     $answerSurname = returnGotData('https://anapioficeandfire.com/api/characters/', $answerId, 'aliases');
 
@@ -12,7 +13,7 @@ function createSurnameQuestion($answersAmount, $answerId)
 
     if($answerName === '' || $answerSurname[0] === '')
     {
-        return false;
+        createSurnameQuestion(4, 2, 1);
     }
     else
     {
@@ -24,23 +25,24 @@ function createSurnameQuestion($answersAmount, $answerId)
                 'right' => false,
                 'text' =>  createSurnameChoice(returnGotData('https://anapioficeandfire.com/api/characters/', strval(floor(mt_rand(1, 2138))), 'aliases'), $answerSurname, $choices)
            ];
+           if(strlen($choice['text']) > 2)
+           {
             array_push($choices, $choice);
+           }
+            
         }
 
         shuffle($choices);
-        $result = createQuestion('What is the nickname of '.$answerName.'?', $choices);
-
-        echo '<pre>';
-        print_r($result);
-        echo '</pre>';
+        $result = createQuestion($id, 'What is the nickname of '.$answerName.'?', $choices);
         return $result;
     }
 }
 
 function createSurnameChoice($data, $answer, $array)
 {
-    if(strlen($data[0]) > 1 || $data[0] !== $answer)
+    if(strlen($data[0]) > 2 || $data[0] !== $answer)
     {
+        echo $data[0];
         return $data[0]; 
     }
     else

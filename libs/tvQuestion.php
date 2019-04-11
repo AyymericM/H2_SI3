@@ -3,9 +3,9 @@
 include 'gotRequest.php';
 include 'createQuestion.php';
 
-function createtvQuestion($answersAmount, $answerId)
+function createtvQuestion(Int $answersAmount = null, Int $answerId = null, Int $id = null)
 {
-    $answerId = strval(floor(mt_rand(1, 2138)));//development
+    // $answerId = strval(floor(mt_rand(1, 2138)));//development
     $answerName = returnGotData('https://anapioficeandfire.com/api/characters/', $answerId , 'name');
     $answerSeasons = returnGotData('https://anapioficeandfire.com/api/characters/', $answerId, 'tvSeries');
     $answerValue = strval(sizeof($answerSeasons));
@@ -13,7 +13,7 @@ function createtvQuestion($answersAmount, $answerId)
 
     if($answerName === '' || $answerSeasons[0] === '')
     {
-        createtvQuestion(4, 2);
+        return false;
     }
     else
     {
@@ -21,12 +21,7 @@ function createtvQuestion($answersAmount, $answerId)
         while(sizeof($choices) < $answersAmount)
         { 
             $wrongAnswer = strval(floor(mt_rand(0, 7)));
-            if($wrongAnswer === $answerValue)
-            {
-                
-            }
-            
-            else
+            if($wrongAnswer !== $answerValue)
             {
                 $inArray = false;
                 foreach($choices as $choice)
@@ -49,7 +44,7 @@ function createtvQuestion($answersAmount, $answerId)
            
         }
         shuffle($choices);
-        $result = createQuestion( 'In how many season '.$answerName.' appears?', $choices);
+        $result = createQuestion($id, 'In how many season '.$answerName.' appears?', $choices);
 
         echo '<pre>';
         print_r($result);
@@ -57,3 +52,4 @@ function createtvQuestion($answersAmount, $answerId)
         return $result;
     }
 }
+createtvQuestion(4, 4, 1);

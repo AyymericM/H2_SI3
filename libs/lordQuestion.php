@@ -3,9 +3,9 @@
 include 'gotRequest.php';
 include 'createQuestion.php';
 
-function createLordQuestion($answersAmount)
+function createLordQuestion(Int $answersAmount = null, Int $answerId = null, Int $id = null)
 {
-    $answerId = strval(floor(mt_rand(1, 444)));//development
+    // $answerId = strval(floor(mt_rand(1, 444)));//development
     $answerHouse = returnGotData('https://anapioficeandfire.com/api/houses/', $answerId , 'name');
     $answerLordLink = returnGotData('https://anapioficeandfire.com/api/houses/', $answerId, 'currentLord');
     $answerLord = returnGotData($answerLordLink, '', 'name');
@@ -14,7 +14,7 @@ function createLordQuestion($answersAmount)
 
     if( strlen($answerHouse) < 2 || strlen($answerLord) < 2)
     {
-        echo 'ta mère';
+        return false;
     }
     else
     {
@@ -30,7 +30,7 @@ function createLordQuestion($answersAmount)
             array_push($choices, $choice);
         }
         shuffle($choices);
-        $result = createQuestion('Who is leading the "'.$answerHouse.'"?', $choices);
+        $result = createQuestion($id, 'Who is leading the "'.$answerHouse.'"?', $choices);
 
         echo '<pre>';
         print_r($result);
@@ -50,4 +50,4 @@ function createLordChoice($data, $answer, $array)
         return createLordChoice(returnGotData('https://anapioficeandfire.com/api/characters/', strval(floor(mt_rand(1, 444))), 'name'), $answer, $array); 
     }
 }
-createLordQuestion(4, 4);
+createLordQuestion(4, 4, 1);

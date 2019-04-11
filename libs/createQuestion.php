@@ -1,8 +1,8 @@
 <?php
 
-function createQuestion( String $question = null, Array $choices = null)
+function createQuestion(Int $id = null, String $question = null, Array $choices = null)
 {
-    if ($question === null || $choices === null)
+    if ($id === null || $question === null || $choices === null)
     {
         return false;
     }
@@ -10,8 +10,9 @@ function createQuestion( String $question = null, Array $choices = null)
     {
         $result = 
         [
-            'question' => $question,
-            'choices' => $choices,
+            'id' => $id,
+            'text' => $question,
+            'answers' => $choices,
         ];
         return $result;
     }
