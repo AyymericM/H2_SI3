@@ -69,6 +69,6 @@ foreach ($qtList as $_qt)
     }
 }
 
-echo '<pre>';
-print_r($qList);
-echo '</pre>';
+// echo '<pre>';
+// print_r($qList);
+// echo '</pre>';
