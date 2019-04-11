@@ -47,7 +47,8 @@
                     return [
                         "id" => $user->id,
                         "username" => $user->username,
-                        "best_score" => $user->best_score
+                        "progression" => $user->progression,
+                        "unlocked_badges" => json_decode($user->unlocked_badges)
                     ];
                 } else {
                     return 'WRONG_PASS';
@@ -59,26 +60,26 @@
 
         public function getAll()
         {
-            $query = $this->db()->query("SELECT id, username, best_score FROM users");
+            $query = $this->db()->query("SELECT id, username, progression, unlocked_badges FROM users");
             return $query->fetchAll();
         }
 
         public function getUserByID(Int $uid)
         {
-            $query = $this->db()->query("SELECT id, username, best_score FROM users WHERE id=$uid");
+            $query = $this->db()->query("SELECT id, username, progression, unlocked_badges FROM users WHERE id=$uid");
             return $query->fetch();
         }
 
         public function getUserByName(String $uname)
         {
-            $query = $this->db()->query("SELECT id, username, best_score FROM users WHERE username='$uname'");
+            $query = $this->db()->query("SELECT id, username, progression, unlocked_badges FROM users WHERE username='$uname'");
             return $query->fetch();
         }
 
         public function editUserScore(Int $uid, Int $score)
         {
             if ($uid && $score) {                
-                $query = $this->db()->prepare("UPDATE users SET best_score=? WHERE id=? ");
+                $query = $this->db()->prepare("UPDATE users SET progression=? WHERE id=? ");
                 $query->execute([$score, $uid]);
                 return true;
             } else {

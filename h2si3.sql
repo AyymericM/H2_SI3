@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le :  jeu. 11 avr. 2019 à 15:25
+-- Généré le :  jeu. 11 avr. 2019 à 17:12
 -- Version du serveur :  10.1.32-MariaDB
 -- Version de PHP :  7.2.5
 
@@ -56,22 +56,17 @@ INSERT INTO `questions` (`id`, `text`, `answers`, `type`) VALUES
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
-  `best_score` bigint(20) NOT NULL DEFAULT '0',
-  `password` varchar(255) NOT NULL
+  `progression` varchar(1024) NOT NULL DEFAULT '0',
+  `password` varchar(255) NOT NULL,
+  `unlocked_badges` varchar(1024) NOT NULL DEFAULT '[]'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `best_score`, `password`) VALUES
-(1, 'oui', 3000, ''),
-(2, 'non', 1337, ''),
-(3, 'non', 1337, ''),
-(4, 'Hello world', 0, '7469a286259799e5b37e5db9296f00b3'),
-(5, 'Hello world', 0, '428304d73656342a9372099d218ae4f9'),
-(6, 'Hello world222', 0, '428304d73656342a9372099d218ae4f9'),
-(7, 'test', 0, '81dc9bdb52d04dc20036dbd8313ed055');
+INSERT INTO `users` (`id`, `username`, `progression`, `password`, `unlocked_badges`) VALUES
+(7, 'test', '0', '81dc9bdb52d04dc20036dbd8313ed055', '[0, 25, 50]');
 
 --
 -- Index pour les tables déchargées
