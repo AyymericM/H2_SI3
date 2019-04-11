@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le :  mer. 10 avr. 2019 à 15:52
+-- Généré le :  jeu. 11 avr. 2019 à 15:25
 -- Version du serveur :  10.1.32-MariaDB
 -- Version de PHP :  7.2.5
 
@@ -33,16 +33,19 @@ USE `h2si3`;
 CREATE TABLE `questions` (
   `id` int(11) NOT NULL,
   `text` varchar(1024) NOT NULL,
-  `answers` varchar(1024) NOT NULL
+  `answers` varchar(1024) NOT NULL,
+  `type` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `questions`
 --
 
-INSERT INTO `questions` (`id`, `text`, `answers`) VALUES
-(1, 'Question facile mdr', '[{\"content\": \"Oui\", \"right\": \"true\"}, {\"content\": \"Non\", \"right\": \"false\"}]'),
-(2, 'Question difficile lol', '[{\"content\": \"Oui\", \"right\": \"false\"}, {\"content\": \"Non\", \"right\": \"true\"}]');
+INSERT INTO `questions` (`id`, `text`, `answers`, `type`) VALUES
+(1, 'Question facile mdr', '[{\"content\": \"Oui\", \"right\": \"true\"}, {\"content\": \"Non\", \"right\": \"false\"}]', 1),
+(2, 'Question difficile lol', '[{\"content\": \"Oui\", \"right\": \"false\"}, {\"content\": \"Non\", \"right\": \"true\"}]', 1),
+(3, 'Question du type 2', '[{\"content\": \"Oui\", \"right\": \"true\"}, {\"content\": \"Non\", \"right\": \"false\"},\r\n{\"content\": \"Oui\", \"right\": \"false\"}, {\"content\": \"Non\", \"right\": \"false\"}]', 2),
+(4, 'Question de quel type ??', '[{\"content\": \"Oui\", \"right\": \"false\"}, {\"content\": \"Non\", \"right\": \"false\"},\r\n{\"content\": \"Type 2\", \"right\": \"true\"}, {\"content\": \"Type 3\", \"right\": \"false\"}]', 2);
 
 -- --------------------------------------------------------
 
@@ -67,7 +70,8 @@ INSERT INTO `users` (`id`, `username`, `best_score`, `password`) VALUES
 (3, 'non', 1337, ''),
 (4, 'Hello world', 0, '7469a286259799e5b37e5db9296f00b3'),
 (5, 'Hello world', 0, '428304d73656342a9372099d218ae4f9'),
-(6, 'Hello world222', 0, '428304d73656342a9372099d218ae4f9');
+(6, 'Hello world222', 0, '428304d73656342a9372099d218ae4f9'),
+(7, 'test', 0, '81dc9bdb52d04dc20036dbd8313ed055');
 
 --
 -- Index pour les tables déchargées
@@ -93,13 +97,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
