@@ -41,6 +41,7 @@ function questionBuilder($q)
     $questionPart2 = $q['questionPart2'];
     $answer = $q['answer'];
     $answersAmount = $q['answersAmount'];
+    $type = $q['type'];
     
     $urlAnswer = $q['urlAnswer'];
     $resultUri = $q['resultUri'];
@@ -102,7 +103,7 @@ function questionBuilder($q)
         // print_r($choices);
         // echo '</pre>';
 
-        $result = createQuestion($id, $question, $choices);
+        $result = createQuestion($id, $question, $choices, $type);
         return $result;
     }
     

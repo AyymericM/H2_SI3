@@ -3,7 +3,7 @@
 $qtList = [];
 array_push($qtList, $qt1);
 array_push($qtList, $qt2);
-// array_push($qtList, $qt3); // multiple warning
+// array_push($ qtList, $qt3); // multiple warning
 array_push($qtList, $qt4);
 array_push($qtList, $qt5);
 array_push($qtList, $qt6);
@@ -69,6 +69,18 @@ foreach ($qtList as $_qt)
     }
 }
 
+$finalList = [];
+
+foreach ($qList as $key => $_q) 
+{
+    $_q['id'] = $key + 1;
+
+    array_push($finalList, $_q);
+}
+
+
+
+
 // echo '<pre>';
-// print_r($qList);
+// print_r($finalList);
 // echo '</pre>';
