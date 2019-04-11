@@ -1,19 +1,14 @@
 <?php
 
-include 'gotRequest.php';
-include 'createQuestion.php';
-
-function createSurnameQuestion(Int $answersAmount = null, Int $answerId = null, Int $id = null)
+function createSurnameQuestion(Int $answersAmount = null, Int $answerId = null, $id)
 {   
-    // $answerId = strval(floor(mt_rand(1, 444)));//development
     $answerName = returnGotData('https://anapioficeandfire.com/api/characters/', $answerId , 'name');
     $answerSurname = returnGotData('https://anapioficeandfire.com/api/characters/', $answerId, 'aliases');
-
     $choices = [];
 
     if($answerName === '' || $answerSurname[0] === '')
     {
-        createSurnameQuestion(4, 2, 1);
+        return false;
     }
     else
     {
@@ -33,7 +28,7 @@ function createSurnameQuestion(Int $answersAmount = null, Int $answerId = null, 
         }
 
         shuffle($choices);
-        $result = createQuestion($id, 'What is the nickname of '.$answerName.'?', $choices);
+        $result = createQuestion($id, 'What is the nickname of '.$answerName.'?', $choices, 1);
         return $result;
     }
 }
@@ -42,7 +37,6 @@ function createSurnameChoice($data, $answer, $array)
 {
     if(strlen($data[0]) > 2 || $data[0] !== $answer)
     {
-        echo $data[0];
         return $data[0]; 
     }
     else
