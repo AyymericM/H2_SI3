@@ -35,4 +35,10 @@
             $query = $this->db()->query("SELECT * FROM questions WHERE id=$qid");
             return $query->fetch();
         }
+
+        public function getQuestionByType(Int $type)
+        {
+            $query = $this->db()->query("SELECT * FROM questions WHERE type=$type");
+            return $query->fetch();
+        }
     }
