@@ -69,6 +69,11 @@ foreach ($qtList as $_qt)
     }
 }
 
-// echo '<pre>';
-// print_r($qList);
-// echo '</pre>';
+foreach ($qList as $key => $_q) 
+{
+    array_push($_q, ['idd' => 'tutu']);
+}
+
+echo '<pre>';
+print_r($qList);
+echo '</pre>';
