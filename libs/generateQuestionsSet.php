@@ -6,6 +6,7 @@ include 'lordQuestion.php';
 include 'surnameQuestion.php';
 include 'tvQuestion.php';
 
+include 'swRequest.php';
 
 define('DB_HOST', 'localhost');
 define('DB_PORT', '8889');
@@ -13,6 +14,11 @@ define('DB_NAME', 'h2si3');
 define('DB_USER', 'root');
 define('DB_PASS', 'root');
 
+/*
+*
+PDO CONNECTION
+*
+*/
 try
 {
     $pdo = new PDO(
@@ -28,9 +34,9 @@ catch(PDOException $e)
     die('cannot connect');
 }
 
+//Generate GoT Questions
 function generateQuestionsSet()
 {
-    //Generate GoT Questions
     $gotQuestions = [];
     $tvId = 1;
     $lordId = 1;
@@ -67,15 +73,25 @@ function generateQuestionsSet()
     }
     return $gotQuestions;
 }
-$questions = generateQuestionsSet();
-echo '<pre>';
-print_r($questions);
-echo '</pre>';
+$gotQuestionsSet = generateQuestionsSet();
 
-// $exec = $pdo->exec('DELETE * FROM questions');
 
-// foreach($questions as $question)
-// {
-//     $exec = $pdo->exec('INSERT INTO questions (id, text, answers, type)
-//     VALUES ('.$question['id'].','.$question['text'].', '.$question['answers'].', '.$question['type'].' )');
-// }
+$questions = array_merge($gotQuestionsSet, $finalList);
+shuffle($questions);
+
+$exec = $pdo->exec('DELETE FROM questions'); //Delete all database if someone tries to access this and create duplication of questions
+
+foreach($questions as $question) //Push every questions in the database
+{
+    $prepare = $pdo->prepare('
+        INSERT INTO
+            questions (text, answers, type)
+        VALUES
+            (:text, :answers, :type)');
+
+    $prepare->bindValue('text', $question['text']); //Question title
+    $prepare->bindValue('answers', json_encode($question['answers']));//Encode array into JSON so that it goes into the sql dbb
+    $prepare->bindValue('type', $question['type']); //question type (Game of thrones or Star wars)
+
+    $execute = $prepare->execute();
+}

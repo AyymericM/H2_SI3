@@ -1,8 +1,5 @@
 <?php
 
-require 'Request.php';
-
-require 'CreateQuestion.php';
 
 
 /**

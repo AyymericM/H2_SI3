@@ -78,9 +78,3 @@ foreach ($qList as $key => $_q)
     array_push($finalList, $_q);
 }
 
-
-
-
-// echo '<pre>';
-// print_r($finalList);
-// echo '</pre>';
