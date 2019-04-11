@@ -1,23 +1,31 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.6.6deb4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:8889
--- Generation Time: Apr 11, 2019 at 05:22 PM
--- Server version: 5.7.23
--- PHP Version: 7.2.8
+-- Client :  localhost:3306
+-- Généré le :  Jeu 11 Avril 2019 à 19:28
+-- Version du serveur :  10.1.37-MariaDB-0+deb9u1
+-- Version de PHP :  7.0.33-0+deb9u3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
 --
--- Database: `h2si3`
+-- Base de données :  `h2si3`
 --
+CREATE DATABASE IF NOT EXISTS `h2si3` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `h2si3`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `questions`
+-- Structure de la table `questions`
 --
 
 CREATE TABLE `questions` (
@@ -28,7 +36,7 @@ CREATE TABLE `questions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `questions`
+-- Contenu de la table `questions`
 --
 
 INSERT INTO `questions` (`id`, `text`, `answers`, `type`) VALUES
@@ -764,57 +772,54 @@ INSERT INTO `questions` (`id`, `text`, `answers`, `type`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Structure de la table `users`
 --
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
-  `best_score` bigint(20) NOT NULL DEFAULT '0',
-  `password` varchar(255) NOT NULL
+  `progression` varchar(1024) NOT NULL DEFAULT '{"type_1": "0", "type_2": "0"}',
+  `password` varchar(255) NOT NULL,
+  `unlocked_badges` varchar(1024) NOT NULL DEFAULT '[]'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `users`
+-- Contenu de la table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `best_score`, `password`) VALUES
-(1, 'oui', 3000, ''),
-(2, 'non', 1337, ''),
-(3, 'non', 1337, ''),
-(4, 'Hello world', 0, '7469a286259799e5b37e5db9296f00b3'),
-(5, 'Hello world', 0, '428304d73656342a9372099d218ae4f9'),
-(6, 'Hello world222', 0, '428304d73656342a9372099d218ae4f9'),
-(7, 'test', 0, '81dc9bdb52d04dc20036dbd8313ed055');
+INSERT INTO `users` (`id`, `username`, `progression`, `password`, `unlocked_badges`) VALUES
+(7, 'test', '{\"type_1\":\"7\", \"type_2\": \"9\"}', '81dc9bdb52d04dc20036dbd8313ed055', '[0, 25, 50]');
 
 --
--- Indexes for dumped tables
+-- Index pour les tables exportées
 --
 
 --
--- Indexes for table `questions`
+-- Index pour la table `questions`
 --
 ALTER TABLE `questions`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `users`
+-- Index pour la table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pour les tables exportées
 --
 
 --
--- AUTO_INCREMENT for table `questions`
+-- AUTO_INCREMENT pour la table `questions`
 --
 ALTER TABLE `questions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2183;
-
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
