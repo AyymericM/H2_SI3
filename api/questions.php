@@ -5,7 +5,7 @@
     $quest = new Questions();
 
     if (isset($_GET['id'])) {
-        echo stripslashes(json_encode($quest->getQuestionByID($_GET['id'])));
+        echo json_encode($quest->getQuestionByID($_GET['id']));
     } else {
-        echo stripslashes(json_encode($quest->getAll()));
+        echo json_encode($quest->getAll());
     }
