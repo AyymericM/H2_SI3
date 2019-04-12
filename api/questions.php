@@ -6,7 +6,7 @@
 
     if (isset($_GET['id'])) {
         echo json_encode($quest->getQuestionByID($_GET['id']));
-    } elseif ($_GET['type']) {
+    } elseif (isset($_GET['type'])) {
         if ($_GET['type'] == 0) {
             echo json_encode($quest->getAll());
         } else {

@@ -1,10 +1,16 @@
 <?php
 
+    // define('DB_HOST', 'localhost');
+    // define('DB_PORT', '8889');
+    // define('DB_NAME', 'h2si3');
+    // define('DB_USER', 'root');
+    // define('DB_PASS', '');
+
     define('DB_HOST', 'localhost');
-    define('DB_PORT', '8889');
+    define('DB_PORT', '3306');
     define('DB_NAME', 'h2si3');
-    define('DB_USER', 'root');
-    define('DB_PASS', '');
+    define('DB_USER', 'phpmyadmin');
+    define('DB_PASS', 'phpccaca');
 
     class Users
     {   
@@ -47,7 +53,8 @@
                     return [
                         "id" => $user->id,
                         "username" => $user->username,
-                        "progression" => $user->progression,
+                        "progression_1" => $user->progression_1,
+                        "progression_2" => $user->progression_2,
                         "unlocked_badges" => json_decode($user->unlocked_badges)
                     ];
                 } else {
@@ -60,19 +67,19 @@
 
         public function getAll()
         {
-            $query = $this->db()->query("SELECT id, username, progression, unlocked_badges FROM users");
+            $query = $this->db()->query("SELECT id, username, progression_1, progression_2, unlocked_badges FROM users");
             return $query->fetchAll();
         }
 
         public function getUserByID(Int $uid)
         {
-            $query = $this->db()->query("SELECT id, username, progression, unlocked_badges FROM users WHERE id=$uid");
+            $query = $this->db()->query("SELECT id, username, progression_1, progression_2, unlocked_badges FROM users WHERE id=$uid");
             return $query->fetch();
         }
 
         public function getUserByName(String $uname)
         {
-            $query = $this->db()->query("SELECT id, username, progression, unlocked_badges FROM users WHERE username='$uname'");
+            $query = $this->db()->query("SELECT id, username, progression_1, progression_2, unlocked_badges FROM users WHERE username='$uname'");
             return $query->fetch();
         }
 
@@ -85,5 +92,16 @@
             } else {
                 return false;
             }
+        }
+
+        public function getLeaderboard()
+        {
+            $query = $this->db()->query("SELECT
+                username, SUM(progression_1+progression_2)
+            FROM
+                users
+            ORDER BY
+                SUM(progression_1+progression_2)");
+            return $query->fetchAll();
         }
     }

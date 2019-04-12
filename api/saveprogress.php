@@ -1,22 +1,22 @@
 <?php
+    include_once '../libs/apiHeaders.php';
     include_once '../libs/db/db.php';
-    include_once '../libs/db/users.php';
-    include_once '../libs/db/question.php';
-
-    $user = new Users();
-    $question = new Questions();
-
+    
     if (isset($_POST['type']) &&
-        isset($_POST['index']) &&
         isset($_POST['answer']) &&
-        isset($_POST['questid']) &&
         isset($_POST['userid']))
     {
-        $u = $user->getUserByID($_POST['userid']);
-        if (json_decode($u->progression)) {
-            # code...
+        $uprep = null;
+        if ($_POST['type'] == 1) {
+            $uprep = $pdo->prepare("UPDATE users SET progression_1 = progression_1 + :answer WHERE id=:userid");
+        } else {
+            $uprep = $pdo->prepare("UPDATE users SET progression_2 = progression_2 + :answer WHERE id=:userid");
         }
-        $uprep = $pdo->prepare('UPDATE progression FROM users WHERE id=?');
+
+        
+        $uprep->bindValue('answer', (int)$_POST['answer']);
+        $uprep->bindValue('userid', $_POST['userid']);
+        $uprep->execute();
 
         echo 'true';
     } else {

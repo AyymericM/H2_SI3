@@ -1,9 +1,15 @@
 <?php
+    // define('DB_HOST', 'localhost');
+    // define('DB_PORT', '8889');
+    // define('DB_NAME', 'h2si3');
+    // define('DB_USER', 'root');
+    // define('DB_PASS', '');
+
     define('DB_HOST', 'localhost');
-    define('DB_PORT', '8889');
+    define('DB_PORT', '3306');
     define('DB_NAME', 'h2si3');
-    define('DB_USER', 'root');
-    define('DB_PASS', '');
+    define('DB_USER', 'phpmyadmin');
+    define('DB_PASS', 'phpccaca');
 
     try {
         $pdo = new PDO(

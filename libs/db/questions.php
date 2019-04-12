@@ -1,10 +1,16 @@
 <?php
 
+    // define('DB_HOST', 'localhost');
+    // define('DB_PORT', '8889');
+    // define('DB_NAME', 'h2si3');
+    // define('DB_USER', 'root');
+    // define('DB_PASS', '');
+
     define('DB_HOST', 'localhost');
-    define('DB_PORT', '8889');
+    define('DB_PORT', '3306');
     define('DB_NAME', 'h2si3');
-    define('DB_USER', 'root');
-    define('DB_PASS', '');
+    define('DB_USER', 'phpmyadmin');
+    define('DB_PASS', 'phpccaca');
 
     class Questions
     {   
@@ -26,7 +32,7 @@
 
         public function getAll()
         {
-            $query = $this->db()->query("SELECT * FROM questions");
+            $query = $this->db()->query("SELECT * FROM questions LIMIT 50");
             return $query->fetchAll();
         }
 
@@ -38,7 +44,8 @@
 
         public function getQuestionByType(Int $type)
         {
-            $query = $this->db()->query("SELECT * FROM questions WHERE type=$type");
-            return $query->fetchAll();
+            $query = $this->db()->query("SELECT * FROM questions WHERE type=$type LIMIT 20");
+            $res = $query->fetchAll();
+            return $res;
         }
     }

@@ -73,25 +73,25 @@ function generateQuestionsSet()
     }
     return $gotQuestions;
 }
-$gotQuestionsSet = generateQuestionsSet();
+// $gotQuestionsSet = generateQuestionsSet();
 
 
-$questions = array_merge($gotQuestionsSet, $finalList);
-shuffle($questions);
+// $questions = array_merge($gotQuestionsSet, $finalList);
+// shuffle($questions);
 
-$exec = $pdo->exec('DELETE FROM questions'); //Delete all database if someone tries to access this and create duplication of questions
+// $exec = $pdo->exec('DELETE FROM questions'); //Delete all database if someone tries to access this and create duplication of questions
 
-foreach($questions as $question) //Push every questions in the database
-{
-    $prepare = $pdo->prepare('
-        INSERT INTO
-            questions (text, answers, type)
-        VALUES
-            (:text, :answers, :type)');
+// foreach($questions as $question) //Push every questions in the database
+// {
+//     $prepare = $pdo->prepare('
+//         INSERT INTO
+//             questions (text, answers, type)
+//         VALUES
+//             (:text, :answers, :type)');
 
-    $prepare->bindValue('text', $question['text']); //Question title
-    $prepare->bindValue('answers', json_encode($question['answers']));//Encode array into JSON so that it goes into the sql dbb
-    $prepare->bindValue('type', $question['type']); //question type (Game of thrones or Star wars)
+//     $prepare->bindValue('text', $question['text']); //Question title
+//     $prepare->bindValue('answers', json_encode($question['answers']));//Encode array into JSON so that it goes into the sql dbb
+//     $prepare->bindValue('type', $question['type']); //question type (Game of thrones or Star wars)
 
-    $execute = $prepare->execute();
-}
+//     $execute = $prepare->execute();
+// }
