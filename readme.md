@@ -1,8 +1,8 @@
 # H2 SI3
 
-![Picture](https://via.placeholder.com/782x90?text=POP+QUIZ)
+![Picture](https://via.placeholder.com/782x90/3498DB/FFFFFF?text=POP+QUIZZ)
 
-> This project is a quiz based on multiple APIs.
+> This project is a quiz whose questions and answers are based on multiple APIs.
 <hr>
 
 # Table of contents
@@ -14,7 +14,6 @@
 * [Project Demo](#project-demo)
 * [Install instructions](#install-instructions)
 * [Issues](#issues)
-* [Credits / Contributors](#credits-/-contributors)
 * [License](#license)
 * [NOTE](#note)
 
@@ -32,12 +31,12 @@
 
 # Description
 
-On fait que du back.
+POP QUIZZ is a quiz about series and movies considered as being part of what is called "pop culture". Every questions are computed using different APIs data.
 
 # Features
 ## Languages used
 * PHP
-* React
+* React.js
 ## APIs used
 * The Game of Thrones API <a href='https://anapioficeandfire.com/'>An API of Ice and Fire</a>
 * The Star Wars API <a href='https://swapi.co/'>SWAPI</a>
@@ -49,18 +48,16 @@ Minimum requirements:
 
 # Project demo
 
-Production host: <a href=''>link</a>
+Production host: <a href='http://popquizz.aymericm.fr/'>POP QUIZZ</a>
 
 # Install instructions
 
-* Faire tourner le PHP dans le dossier `API` avec apache ou autre chose
-* Installer les dépendances du dossier `CLIENT` et `CLIENT/server`
-* Build le client en faisant `cd CLIENT && npm run build`
-* Démarrer le serveur node en faisant `cd CLIENT/server && npm start`
+* Run the PHP in the folder `API` with Apache or another web server software
+* Install the depedencies from the folders `CLIENT` and `CLIENT/server`
+* Build the client by typing `cd CLIENT && npm run build`
+* Start the server by typing `cd CLIENT/server && npm start`
 
 # Issues
-
-# Credits / Contributors
 
 # License
 
@@ -69,4 +66,4 @@ See the <a href=''>license.md</a> file for more information.
 
 ## NOTE
 
-Ces instructions sont sujettes à changer
+These instructions might change in the future.
