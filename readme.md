@@ -1,6 +1,6 @@
 # H2 SI3
 
-![Picture](https://via.placeholder.com/782x90/3498DB/FFFFFF?text=POP+QUIZZ)
+![Picture](https://via.placeholder.com/882x90/3498DB/FFFFFF?text=POP+QUIZZ)
 
 > This project is a quiz whose questions and answers are based on multiple APIs.
 <hr>
